@@ -147,3 +147,16 @@
   become_user: "{{ data_server_user }}"
   no_log: true  # Ensure passwords aren't logged if this fails.
 
+- name: Increase system-wide file descriptor (FD) limits
+  lineinfile:
+    path: /etc/sysctl.conf
+    line: fs.file-max=500000
+  become: true
+  
+- name: Increase user level soft/hard FD limits
+  blockinfile:
+    path: /etc/security/limits.conf
+    block: |
+          '*     soft nofile 500000'
+          '*     hard nofile 500000'
+  become: true
