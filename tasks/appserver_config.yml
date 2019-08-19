@@ -153,5 +153,5 @@
     insertbefore: '# End of file'
     block: |
       {{ data_server_user }}     soft nofile 999999
-          '*     hard nofile 999999'
+      {{ data_server_user }}     hard nofile 999999
   become: true
