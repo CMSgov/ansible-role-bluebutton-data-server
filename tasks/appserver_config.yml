@@ -150,6 +150,7 @@
 - name: Increase user level soft/hard FD limits
   blockinfile:
     path: /etc/security/limits.conf
+    insertbefore: '# End of file'
     block: |
           '*     soft nofile 999999'
           '*     hard nofile 999999'
